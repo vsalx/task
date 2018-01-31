@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.task.demo.enums.MessageType;
+import com.task.demo.exception.PreconditionFailedException;
 import com.task.demo.service.MessageService;
 
 @RestController
@@ -23,7 +24,7 @@ public class MessageController {
 	@RequestMapping("/messages/{type}")
 	@ResponseStatus(code = HttpStatus.OK)
 	public void sendMessage(@PathVariable(name="type") @NotNull final MessageType type,
-			@RequestParam(name = "payload") @NotNull final String payload) {
+			@RequestParam(name = "payload") @NotNull final String payload) throws PreconditionFailedException {
 		messageService.sendMessage(type, payload);
 	}
 }

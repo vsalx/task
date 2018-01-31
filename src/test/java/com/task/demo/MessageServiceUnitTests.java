@@ -44,7 +44,7 @@ public class MessageServiceUnitTests {
 	private final static String CORRECT_PAYLOAD = "correct :)";
 	
 	@Test
-	public void testSendTextMessageCorrect() {
+	public void testSendTextMessageCorrect() throws PreconditionFailedException {
 		Message expected = new Message(MessageType.send_text, CORRECT_PAYLOAD);
 		
 		messageService.sendMessage(MessageType.send_text, CORRECT_PAYLOAD);
@@ -56,7 +56,7 @@ public class MessageServiceUnitTests {
 	}
 	
 	@Test
-	public void testSendEmotionMessageCorrect() {
+	public void testSendEmotionMessageCorrect() throws PreconditionFailedException {
 		Message expected = new Message(MessageType.send_emotion, CORRECT_PAYLOAD);
 		
 		messageService.sendMessage(MessageType.send_emotion, CORRECT_PAYLOAD);
@@ -68,7 +68,7 @@ public class MessageServiceUnitTests {
 	}
 	
 	@Test
-	public void testSendTextMessageAlphaNumericCorrect() {
+	public void testSendTextMessageAlphaNumericCorrect() throws PreconditionFailedException {
 		Message expected = new Message(MessageType.send_text, ALPHANUMERIC_PAYLOAD);
 		
 		messageService.sendMessage(MessageType.send_text, ALPHANUMERIC_PAYLOAD);
@@ -80,27 +80,27 @@ public class MessageServiceUnitTests {
 	}
 	
 	@Test(expected = PreconditionFailedException.class)
-	public void testSendTextMessageTooLong() {
+	public void testSendTextMessageTooLong() throws PreconditionFailedException {
 		messageService.sendMessage(MessageType.send_text, TOO_LONG_PAYLOAD);
 	}
 	
 	@Test(expected = PreconditionFailedException.class)
-	public void testSendTextMessageTooShort() {
+	public void testSendTextMessageTooShort() throws PreconditionFailedException {
 		messageService.sendMessage(MessageType.send_text, TOO_SHORT_PAYLOAD);
 	}
 	
 	@Test(expected = PreconditionFailedException.class)
-	public void testSendEmotionMessageWithNumbers() {
+	public void testSendEmotionMessageWithNumbers() throws PreconditionFailedException {
 		messageService.sendMessage(MessageType.send_emotion, ALPHANUMERIC_PAYLOAD);
 	}
 	
 	@Test(expected = PreconditionFailedException.class)
-	public void testSendEmotionMessageTooLong() {
+	public void testSendEmotionMessageTooLong() throws PreconditionFailedException {
 		messageService.sendMessage(MessageType.send_emotion, TOO_LONG_PAYLOAD);
 	}
 	
 	@Test(expected = PreconditionFailedException.class)
-	public void testSendEmotionMessageTooShort() {
+	public void testSendEmotionMessageTooShort() throws PreconditionFailedException {
 		messageService.sendMessage(MessageType.send_emotion, TOO_SHORT_PAYLOAD);
 	}
 }

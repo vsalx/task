@@ -6,7 +6,7 @@ import com.task.demo.exception.PreconditionFailedException;
 
 public abstract class AbstractMessageHandler {
 	
-	public Message createMessage(MessageType type, String payload) {
+	public Message createMessage(MessageType type, String payload) throws PreconditionFailedException {
 		if(!validatePayload(payload)) {
 			throw new PreconditionFailedException();
 		}
